@@ -1,0 +1,56 @@
+<h1 *ngIf="titulo_apartado">{{titulo_apartado}}</h1>
+
+<div class="col-lg-6 offset-md-1" >
+<div class="alert alert-success" *ngIf="mensajerecibido">
+    <strong>Éxito! </strong>{{mensajerecibido}}
+</div>
+    
+<div *ngIf="mensajeerror" class="alert alert-danger" role="alert">
+    <strong>Error:</strong> {{mensajeerror}}
+</div>
+
+<form #formAlbum="ngForm" (ngSubmit)="addAlbum()">
+    <p>
+        <label>Título:</label>
+        <input type="text" #titulo="ngModel" name="titulo" [(ngModel)]="album.titulo" required
+        class="form-control">
+        <span class="negrita" *ngIf="!titulo.valid && titulo.touched">
+            El titulo es obligatorio
+            <br>
+        </span>
+    </p>
+    <p>
+            <label>Descripción:</label>
+            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="album.descripcion" required
+            class="form-control">
+            <span class="negrita" *ngIf="!descripcion.valid && descripcion.touched">
+                La descripción es obligatoria
+                <br>
+            </span>
+    </p>
+    <p>
+            <label>Año:</label>
+            <input type="text" #anio="ngModel" name="anio" [(ngModel)]="album.anio" required
+            class="form-control">
+            <span class="negrita" *ngIf="!anio.valid && anio.touched">
+                El año es obligatorio
+                <br>
+            </span>
+    </p>
+
+    <div *ngIf="es_editar">
+        <div class="image_for_edit" *ngIf="album.imagen">
+           
+            <img src="{{url + 'obtener-foto-album/' + album.imagen}}" width="40%">
+        </div>
+        <label>Sube la imagen del album</label>
+        <input type="file" class="input-file" placeholder="Sube imagen album.." (change)="CambiarFicheroEvent($event)">
+        
+    </div>
+    <br *ngIf="es_editar">
+    <input type="submit" value="{{titulo_apartado}}" [disabled]="!formAlbum.form.valid" class="btn btn-primary">
+
+
+</form>
+
+</div>

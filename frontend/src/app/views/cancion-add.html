@@ -1,0 +1,39 @@
+<h1>{{titulo_apartado}}</h1>
+<p *ngIf="alerterror">{{alerterror}}</p>
+<div class="col-lg-6 offset-md-1">
+<form #formCancion="ngForm" (ngSubmit)="creaCancion()">
+    
+    <label>Nombre de la canción:</label>
+    <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="cancion.nombre" required class="form-control">
+    <span class="negrita" *ngIf="!nombre.valid && nombre.touched">
+        El nombre es obligatorio
+        <br>
+    </span>
+    <label>Número de la canción:</label>
+    <input type="number" #numero="ngModel" name="numero" [(ngModel)]="cancion.numero" required class="form-control">
+        <span class="negrita" *ngIf="!numero.valid && numero.touched">
+            El numero es obligatorio
+            <br>
+        </span>
+        <br>
+
+    <div *ngIf="cancion.archivo">
+        
+        <audio controls controlsList="nodownload">
+            <source src="{{url + 'obtener-fichero-cancion/' + cancion.archivo}}"  type="audio/mpeg">
+    
+                Tu navegador no soporta la reproducción de audio
+        </audio>
+
+    </div>
+
+    <label>Sube el archivo de la canción:</label>
+    <input type="file"   accept="audio/mp3" (change)="CambiarFicheroEvent($event)" >
+
+    
+    <br>
+    <br>
+    <input type="submit" value={{titulo_apartado}} 
+    [disabled]="!formCancion.form.valid" class="btn btn-success">
+</form>
+</div>

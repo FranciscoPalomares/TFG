@@ -1,0 +1,48 @@
+<div class="col-lg-6 offset-md-1">
+
+  <h1>{{titulo}}</h1>
+
+
+  <div class="alert alert-success" *ngIf="mensajerecibido">
+<strong>Éxito! </strong>{{mensajerecibido}}
+</div>
+
+<div *ngIf="mensajeerror" class="alert alert-danger" role="alert">
+<strong>Error:</strong> {{mensajeerror}}
+</div>
+
+    <form #actualizarUsuario="ngForm" (ngSubmit)="onSubmit()" role="form" *ngIf="usuario_actualizar">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" #nombre="ngModel" [(ngModel)]="usuario_actualizar.nombre" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre">
+      <span class="negrita" *ngIf="!nombre.valid && nombre.touched" required>
+        El numero es obligatorio
+        <br>
+    </span>
+    </div>
+    <div class="form-group">
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" #apellidos="ngModel" [(ngModel)]="usuario_actualizar.apellidos" name="apellidos" id="apellidos" tabindex="2" class="form-control" placeholder="Apellidos">
+      <span class="negrita" *ngIf="!apellidos.valid && apellidos.touched" required>
+        Los apellidos son obligatorio
+        <br>
+    </span>
+    </div>
+
+    <div class="image_for_edit" *ngIf="usuario_actualizar.imagen && usuario_actualizar.imagen != 'null'">
+      <img src="{{url + '/obtener-foto-perfil/' +usuario_actualizar.imagen}}" alt="" style="width:40%">
+
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="imagen">Sube tu imagen:</label>
+      <input type="file" name="imagen" id="imagen" placeholder="Sube tu imagen..." accept="image/x-png,image/jpeg" (change)="CambiarFicheroEvent($event)">
+    </div>
+
+    <div class="form-group">
+          <input type="submit" name="actualizar-submit" tabindex="5" [disabled]="!actualizarUsuario.form.valid" class="form-control btn btn-register" value="Actualizar usuario">
+    </div>
+
+  </form>
+
+</div>

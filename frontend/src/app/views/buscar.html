@@ -1,0 +1,119 @@
+
+
+<div class="col-lg-6 offset-md-1" >
+        <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-search"></i>&nbsp;</span>
+                <input type="text"  class="form-control" #buscador (input)="onKey(buscador.value)" ng-keydown="onKey(buscador.value)" placeholder="Introduce una búsqueda">
+        </div>
+   
+    <div *ngIf="albumes!=null && playlists!=null && artistas!=null && usuarios_buscados!=null && canciones!=null && albumes.length==0 && playlists.length==0 && canciones.length==0 && artistas.length==0 && usuarios_buscados.length==0">
+        <br>
+        <div class="text-center">
+        <h2>No se ha encontrado nada </h2>
+        
+                <i class="far fa-frown fa-5x"></i>
+        </div>
+       
+    </div>
+    <div id="filtrado_canciones" *ngIf="canciones && canciones.length > 0">
+            <br>
+            <h6>Canciones:</h6>
+            <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let cancion of canciones">
+                            <span class="btn btn-dark fa fa-play" (click)="reproducirCancion(cancion)" aria-hidden="true"></span>
+                            &nbsp;{{cancion.nombre}}
+                        &nbsp; - &nbsp; {{cancion.duracion}}  &nbsp; - &nbsp;
+                        <span class="btn btn-link" [routerLink]="['/artista/',cancion.Album.Artistum.id]" >{{cancion.Album.Artistum.nombre}}</span>
+                        <span id="opciones">
+                                <div class="dropdown">
+                                        <button class="dropbtn">
+                                                <span class="fas fa-ellipsis-h" aria-hidden="true"></span>
+                                        </button>
+                                        <div class="dropdown-content">
+                                          <a class="btn btn-default" [routerLink]="['/album/',cancion.Album.id]">Ir al álbum</a>
+                                          <a class="btn btn-warning" (click)="addCancionCola(cancion)">Añadir a Cola</a>
+                                          <a class="btn btn-info" (click)="playlistsModal(cancion)">Añadir a Playlist</a>
+                                        </div>
+                                        
+                                </div>
+                        </span>
+                    </li>
+            </ul>
+            
+
+    </div>
+    <div id="filtrado_albumes" *ngIf="albumes && albumes.length > 0">
+        <br>
+        <h6>Albumes:</h6>
+        <ul class="list-group">
+               
+                <li [routerLink]="['/album/',album.id]" class="list-group-item" *ngFor="let album of albumes">
+                    <img class="artista-imagen-filtrar" *ngIf="album.imagen" src="{{url+'obtener-foto-album/' + album.imagen}}" alt="{{album.titulo}}" >&nbsp; {{album.titulo}}
+                </li>
+        </ul>
+       
+    </div>
+
+    <div id="filtrado_albumes" *ngIf="playlists && playlists.length > 0">
+            <br>
+            <h6>Playlists:</h6>
+            <ul class="list-group">
+                    <li class="list-group-item" [routerLink]="['/playlist/',playlist.id]" *ngFor="let playlist of playlists">{{playlist.nombre}}</li>
+            </ul>
+           
+    </div>
+
+
+
+    <div id="filtrado_artistas" *ngIf="artistas && artistas.length > 0">
+            <br>
+            <h6>Artistas:</h6>
+            <ul class="list-group">
+                    <li class="list-group-item" [routerLink]="['/artista/',artista.id]" *ngFor="let artista of artistas">
+                        <img class="artista-imagen-filtrar" src="{{url+'obtener-foto-artista/' + artista.imagen}}" alt="{{artista.nombre}}" >&nbsp;{{artista.nombre}}</li>
+            </ul>
+    </div>
+
+
+    <div id="filtrado_usuarios" *ngIf="usuarios_buscados && usuarios_buscados.length > 0">
+        <br>
+        <h6>Usuarios:</h6>
+        <ul class="list-group">
+                <li class="list-group-item" [routerLink]="['/usuario/',usuario.id]" *ngFor="let usuario of usuarios_buscados">
+                    <img *ngIf="usuario.imagen"class="artista-imagen-filtrar" src="{{url+'obtener-foto-perfil/' + usuario.imagen}}" alt="{{usuario.nombre}}" ><i *ngIf="!usuario.imagen" class="fas fa-user"></i>&nbsp;{{usuario.nombre}}&nbsp;{{usuario.apellidos}}</li>
+        </ul>
+    </div>
+
+
+
+</div>
+
+<div class="modal fade" id="modalPlaylists">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+           
+            <div class="modal-header">
+
+              <h4>Añade canción a Playlist: <a [routerLink]="['/crear-playlist']" class="btn btn-primary btn-lg">Añadir playlist</a></h4>
+            </div>
+      
+           
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item text-center text-uppercase btn"*ngFor="let playlist of playlists_creadas" (click)="addCancionPlaylist(playlist)">
+                        <div >
+                            {{playlist.nombre}}
+                        </div>
+                    </li>
+                  </ul>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>

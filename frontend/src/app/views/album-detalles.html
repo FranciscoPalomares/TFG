@@ -1,0 +1,83 @@
+<div id="info-album" class="row">
+    
+    <div class="col-sm-4">
+         <img id="foto-artista" src="{{url+'obtener-foto-album/' + album.imagen}}" alt="{{album.nombre}}" *ngIf="album.imagen">
+        <h2>{{album.titulo}}</h2>
+    </div>
+   
+    <div class="col-sm-6" *ngIf="artista">
+            <h4 style="font-weight: bold;"> <a [routerLink]="['/artista/',artista.id]">{{artista.nombre}}</a>-{{album.anio}}</h4>
+     <h3>Descripción:</h3>
+        <p>{{album.descripcion}}</p>
+    </div>
+    <div class="clearfix"></div>
+    
+</div>
+<hr>
+<div class="clearfix"></div>
+<div>
+    <h3>Canciones: <a [routerLink]="['/crear-cancion/',album.id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Añadir canción</a></h3>
+    <div *ngIf="canciones">
+        <ul id="lista_canciones">
+            <li *ngFor="let cancion of canciones" class="cancion-item">
+                    
+                <div  class="titulo-cancion">
+                        <span class="btn btn-dark fa fa-play" (click)="reproducirCancion(cancion)" aria-hidden="true"></span>
+                    <span [ngStyle]="{
+                        'color': compararCancion(cancion.id) ? 'green':'black'
+                    }">
+                    <span class="numero-cancion">{{cancion.numero}}. &nbsp;</span>
+                    <span class="nombre-cancion">{{cancion.nombre}}  - </span>
+                     {{cancion.duracion}}</span>
+                    <span id="opciones">
+                            <div class="dropdown">
+                                    <button class="dropbtn">
+                                            <span class="fas fa-ellipsis-h" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="dropdown-content">
+                                      <a class="btn btn-default" (click)="addCancionCola(cancion)">Añadir a Cola</a>
+                                      <a class="btn btn-info" (click)="playlistsModal(cancion)">Añadir a Playlist</a>
+                                      <div *ngIf="identidad.rol == 'ROLE_ADMIN'">
+                                      <a [routerLink]="['/editar-cancion/',cancion.id]" class="btn btn-warning">Editar</a>
+                                      <a  (click)="eliminarCancion(cancion.id)" class="btn btn-danger">Borrar</a>
+                                    </div>
+                                    </div>
+                            </div>
+                    </span>
+                    
+                   
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPlaylists">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+       
+        <div class="modal-header">
+                <h4>Añade canción a Playlist: <a [routerLink]="['/crear-playlist']" class="btn btn-primary btn-lg">Añadir playlist</a></h4>
+          
+        </div>
+  
+       
+        <div class="modal-body">
+            <ul class="list-group">
+                <li class="list-group-item text-center text-uppercase btn"*ngFor="let playlist of playlists" (click)="addCancionPlaylist(playlist)">
+                    <div >
+                        {{playlist.nombre}}
+                    </div>
+                </li>
+              </ul>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

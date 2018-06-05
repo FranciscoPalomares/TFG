@@ -1,0 +1,33 @@
+{
+  "name": "tfg-spotify",
+  "version": "1.0.0",
+  "description": "Tfg similar a spotify con node js, angular y postgresql",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Francisco Jesús Palomares Alabarce",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "connect-multiparty": "^2.1.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jwt-simple": "^0.5.1",
+    "mediaserver": "^0.1.0",
+    "moment": "^2.22.1",
+    "mp3-duration": "^1.1.0",
+    "musicmetadata": "^2.0.5",
+    "nodemailer": "^4.6.5",
+    "npm": "^4.6.1",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.37.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}

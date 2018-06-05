@@ -1,0 +1,98 @@
+
+<div id="archivo-audio">
+    Reproduciendo:
+    <span id="titulo-cancion-reproductor" *ngIf="_colaService.cancion_sonando">
+       {{_colaService.cancion_sonando.nombre}}
+       
+    </span>
+    <span id="artista-reproductor" *ngIf="_colaService.artista_sonando" >
+      -
+      <a [routerLink]="['/artista/',_colaService.artista_sonando.id]">{{_colaService.artista_sonando.nombre}}</a>
+    </span>
+          
+        
+        
+</div>
+
+
+
+  <div class="row row-eq-height">
+    <div class="col-xs-2 col-sm-1 col-lg-1 	d-none d-sm-block" >
+      <span *ngIf="!_colaService.album_sonando" >
+        <img id="reproductor-imagen-album" src="assets/imagen/ugrfy.png" >
+    </span>
+    <span *ngIf="_colaService.album_sonando" >
+        <a *ngIf="_colaService.album_sonando" [routerLink]="['/album/',_colaService.album_sonando.id]"><img id="reproductor-imagen-album" [src]="url + '/obtener-foto-album/' + _colaService.album_sonando.imagen" ></a>
+    </span>
+    </div>
+
+    
+    <div class="col-xs-12 col-sm-8 col-lg-8" >
+        <div class="margen-2">
+      <audio controls  (error)="cancionTerminada()" controlsList="nodownload" (ended)="cancionTerminada()"  id="reproductor-sonoro">
+        <source id="mp3-source"  type="audio/mpeg">
+            Tu navegador no es compatible con reproductor de audio
+        </audio>
+      </div>
+    </div>
+    <div class="col-xs-4 col-sm-3 col-lg-3 	.d-none .d-sm-block">
+      <div class="margen">
+
+      
+      <a  id="boton-cola" data-toggle="modal" data-target=".bd-example-modal-sm" (click)="verCola()" > <span class="fas fa-align-left" aria-hidden="true"></span></a>
+        <a  id="boton-cola"  (click)="cancionAtras()" > <span class="fas fa-step-backward" aria-hidden="true"></span></a>
+        <a  id="boton-cola"  (click)="cancionTerminada()" > <span class="fas fa-step-forward" aria-hidden="true"></span></a>
+      </div>
+ 
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModalCola">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+           
+            <div class="modal-header">
+              <h4 class="modal-title">Cola de música</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+           
+            <div id="cuerpo-cola"class="modal-body">
+                <div  *ngIf="!_colaService.cola">
+                    No hay nada reproduciéndose :(
+                </div>
+                <div id="cancion-sonando" *ngIf="_colaService.cancion_sonando">
+                    Reproduciendo: {{_colaService.cancion_sonando.nombre}}
+                </div>
+
+              <ul>
+                  
+                  <div [sortablejs]="_colaService.cola">
+                  <div class="cancion-cola" *ngFor="let cancion of  _colaService.cola">
+                    {{cancion.nombre}}
+                    <span (click)="eliminarCancionCola(cancion.id)" style="float:right"class="boton-borrar-cola" class="fas fa-trash"></span>
+                    <span style="float:right;margin-right:3%;"class="fas fa-bars"></span>
+                    
+                  </div>
+                </div>
+              </ul>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+

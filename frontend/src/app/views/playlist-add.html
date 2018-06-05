@@ -1,0 +1,19 @@
+<h1 *ngIf="titulo_apartado">{{titulo_apartado}}</h1>
+
+<div class="col-lg-6 offset-md-1" >
+<form #formPlaylist="ngForm" (ngSubmit)="addPlaylist()">
+    <p>
+        <label>Nombre:</label>
+        <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="playlist.nombre" required
+        class="form-control">
+        <span class="negrita" *ngIf="!nombre.valid && nombre.touched">
+            El nombre es obligatorio
+            <br>
+        </span>
+    </p>
+    
+    <input type="submit" value="{{titulo_apartado}}" [disabled]="!formPlaylist.form.valid" class="btn btn-primary">
+
+
+</form>
+</div>

@@ -1,0 +1,46 @@
+<h1>{{titulo}}</h1>
+
+
+<div class="col-lg-6 offset-md-1" >
+        <div class="alert alert-success" *ngIf="mensajerecibido">
+                <strong>Éxito! </strong>{{mensajerecibido}}
+            </div>
+                
+            <div *ngIf="mensajeerror" class="alert alert-danger" role="alert">
+                <strong>Error:</strong> {{mensajeerror}}
+            </div>
+<form #formArtista="ngForm" (ngSubmit)="addArtista()" >
+    <p>
+        <label>Nombre:</label>
+        <input type="text" #nombre="ngModel" name="nombre"
+        [(ngModel)]="artista.nombre" required class="form-control">
+        <span class="negrita" *ngIf="!nombre.valid && nombre.touched">
+            El nombre es obligatorio
+            <br>
+        </span>
+        
+    </p>
+    <p>
+        <label>Descripción:</label>
+        <textarea #descripcion="ngModel" name="descripcion"
+        [(ngModel)]="artista.descripcion" required class="form-control"></textarea>
+        <span class="negrita" *ngIf="!descripcion.valid && descripcion.touched">
+            La descripción es obligatoria
+            <br>
+        </span>
+        
+    </p>
+
+    <div *ngIf="es_editar">
+        <div class="image_for_edit" *ngIf="artista.imagen">
+           
+            <img src="{{url + 'obtener-foto-artista/' + artista.imagen}}" width="40%">
+        </div>
+        <label>Sube la imagen de artista</label>
+        <input type="file" class="input-file" placeholder="Sube imagen artista.." (change)="CambiarFicheroEvent($event)">
+        
+    </div>
+    <br *ngIf="es_editar">
+    <input type="submit" class="btn btn-success" [disabled]="!formArtista.form.valid" value="{{titulo}}" />
+</form>
+</div>

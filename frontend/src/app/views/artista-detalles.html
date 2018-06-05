@@ -1,0 +1,74 @@
+
+    <div id="info-artista" class="row">
+    
+    <div class="col-sm-4">
+         <img id="foto-artista" src="{{url+'obtener-foto-artista/' + artista.imagen}}" alt="{{artista.nombre}}" *ngIf="artista.imagen">
+       
+    </div>
+   
+    <div class="col-sm-6">
+            <h1 style="font-weight: bold;">{{artista.nombre}} <a [routerLink]="['/editar-artista/',artista.id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Editar artista</a></h1>
+     <h3>Descripción:</h3>
+        <p>{{artista.descripcion}}</p>
+    </div>
+    
+</div>
+<hr>
+<div id="galeria-albums">
+    <h3>Álbumes:  <a [routerLink]="['/crear-album/',artista.id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Crear Album</a></h3>
+    <ul class="lista-albums text-center">
+            <div class="container">
+                    <div  class="sep container" *ngFor="let album of albums;let i = index" >
+                        <div class="row" *ngIf="i % 3 === 0">
+                          <div class="col-md-3 album-item" >
+                                <div  *ngIf="albums[i].imagen">
+                                        <img src="{{url + 'obtener-foto-album/' + albums[i].imagen}}" alt="" height="20%" width="100%">
+                                    </div>
+                                    <div >
+                                        <a  [routerLink]="['/album/',albums[i].id]" class="titulo-album">
+                                        <p>{{albums[i].titulo}} {{albums[i].anio}}</p>
+                                        </a>
+                                    </div>
+                                    <div *ngIf="identidad.rol == 'ROLE_ADMIN'">
+                                        <button [routerLink]="['/editar-album/',albums[i].id]" class="btn btn-warning">Editar</button>
+                                        <button (click)="eliminarAlbum(albums[i].id)" class="btn btn-danger">Borrar</button>
+                                    </div>
+                          </div>  
+                          <div class="col-md-3 album-item" *ngIf="albums[i+1]">
+                                <div  *ngIf="albums[i+1].imagen">
+                                        <img src="{{url + 'obtener-foto-album/' + albums[i+1].imagen}}" alt="" height="20%" width="100%">
+                                    </div>
+                                    <div >
+                                        <a   [routerLink]="['/album/',albums[i+1].id]"  class="titulo-album">
+                                        <p>{{albums[i+1].titulo}} {{albums[i+1].anio}}</p>
+                                        </a>
+                                    </div>
+                                    <div *ngIf="identidad.rol == 'ROLE_ADMIN'">
+                                        <button [routerLink]="['/editar-album/',albums[i+1].id]" class="btn btn-warning">Editar</button>
+                                         <button (click)="eliminarAlbum(albums[i+1].id)" class="btn btn-danger">Borrar</button>
+                                    </div>
+                        </div> 
+                            <div class="col-md-3 album-item" *ngIf="albums[i+2]">
+                                    <div  *ngIf="albums[i+2].imagen">
+                                            <img src="{{url + 'obtener-foto-album/' + albums[i+2].imagen}}" alt="" height="20%" width="100%">
+                                        </div>
+                                        <div >
+                                            <a   [routerLink]="['/album/',albums[i+2].id]"  class="titulo-album">
+                                            <p>{{albums[i+2].titulo}} {{albums[i+2].anio}}</p>
+                                            </a>
+                                        </div>
+                                        <div *ngIf="identidad.rol == 'ROLE_ADMIN'">
+                                            <button [routerLink]="['/editar-album/',albums[i+2].id]" class="btn btn-warning">Editar</button>
+                                            <button (click)="eliminarAlbum(albums[i+2].id)" class="btn btn-danger">Borrar</button>
+                                        </div>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+    </ul>
+</div>
+
+
+
+           
+         

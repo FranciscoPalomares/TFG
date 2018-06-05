@@ -1,0 +1,13 @@
+
+<div class="col-lg-6 " >
+    <h5>Mis playlists: <a [routerLink]="['/crear-playlist']" class="btn btn-primary btn-lg">Añadir playlist</a></h5>
+    <ul id="lista_mis_playlists" class="list-group">
+        <li class="list-group-item" *ngFor="let playlist of playlists"><a [routerLink]="['/playlist/',playlist.id]" >{{playlist.nombre}}</a></li>
+    </ul>
+    <br>
+    <h5>Mis playlists seguidas:</h5>
+    <ul id="lista_mis_playlists_seguidas" class="list-group">
+        <li class="list-group-item" *ngFor="let playlist of playlists_seguidas"><a [routerLink]="['/playlist/',playlist.id]" >{{playlist.nombre}}</a></li>
+    </ul>
+
+</div>

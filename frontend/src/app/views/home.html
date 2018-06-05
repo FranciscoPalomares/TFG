@@ -1,0 +1,16 @@
+<div class="col-lg-offset-3">
+
+
+<div class="jumbotron">
+    <h1>BIENVENIDO A UGRFY</h1>
+    <p>Esperamos que disfrutes de la música más actual, recuerda que puedes hacer listas de reproducción y escucharlas cuando quieras!</p>
+</div>
+</div>
+<h2>Últimos artistas añadidos:</h2>
+<div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true">
+        <a class="tip" [routerLink]="['/artista/',artista.id]"   *ngFor="let artista of artistas">
+            <img  class="figure-img img-fluid rounded " style="height: 10%;width: 30%" src="{{url+'obtener-foto-artista/' + artista.imagen}}" title="{{artista.nombre}}" >
+            <span>{{artista.nombre}}</span>
+        </a>
+        
+</div>

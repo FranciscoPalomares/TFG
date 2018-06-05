@@ -1,0 +1,49 @@
+<div class="head-page" *ngIf="identidad">
+  <h1>{{titulo}}  <a [routerLink]="['/crear-artista']" *ngIf="identidad && identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary btn-lg">Añadir artista</a></h1>
+
+ 
+  <br>
+</div>
+                  <div class="container">
+            <div  class="sep container" *ngFor="let artista of artistas;let i = index" >
+                <div class="row" *ngIf="i % 3 === 0">
+                  <div class="col-md-4 card" *ngIf="artistas[i]" >
+                        <div  *ngIf="artistas[i].imagen">
+                                <img  class="card-img-top" height="200" src="{{url+'obtener-foto-artista/' + artistas[i].imagen}}">
+                            </div>
+                            <div class="card-block">
+                              <a [routerLink]="['/artista/',artistas[i].id]"> <h4 class="card-title">{{artistas[i].nombre}}</h4></a>
+                              <p class="card-text">{{artistas[i].descripcion}}</p>
+                              <a [routerLink]="['/editar-artista/',artistas[i].id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Editar artista</a>
+                              <a  (click)="eliminarArtista(artistas[i].id)" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-danger">Eliminar artista</a>
+                            </div>
+                  </div>  
+                  <div class="col-md-4 card" *ngIf="artistas[i+1]" >
+                    <div  *ngIf="artistas[i+1].imagen">
+                            <img  class="card-img-top" height="200" src="{{url+'obtener-foto-artista/' + artistas[i+1].imagen}}">
+                        </div>
+                        <div class="card-block">
+                          <a [routerLink]="['/artista/',artistas[i+1].id]"> <h4 class="card-title">{{artistas[i+1].nombre}}</h4></a>
+                          <p class="card-text">{{artistas[i+1].descripcion}}</p>
+                          <a [routerLink]="['/editar-artista/',artistas[i+1].id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Editar artista</a>
+                          <a  (click)="eliminarArtista(artistas[i+1].id)" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-danger">Eliminar artista</a>
+                        </div>
+              </div>  
+                  <div class="col-md-4 card" *ngIf="artistas[i+2]">
+                    <div  *ngIf="artistas[i+2].imagen">
+                            <img  class="card-img-top" height="200" src="{{url+'obtener-foto-artista/' + artistas[i+2].imagen}}">
+                        </div>
+                        <div class="card-block">
+                          <a [routerLink]="['/artista/',artistas[i+2].id]"> <h4 class="card-title">{{artistas[i+2].nombre}}</h4></a>
+                          <p class="card-text">{{artistas[i+2].descripcion}}</p>
+                          <a [routerLink]="['/editar-artista/',artistas[i+2].id]" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-primary">Editar artista</a>
+                          <a  (click)="eliminarArtista(artistas[i+2].id)" *ngIf="identidad.rol == 'ROLE_ADMIN'"class="btn btn-danger">Eliminar artista</a>
+                        </div>
+                </div>       
+                </div>
+            </div>
+        </div>
+         
+ 
+  
+

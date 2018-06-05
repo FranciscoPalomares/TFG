@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\FRAJE\\Desktop\\TFG\\appTFG\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-de\\values-de.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\FRAJE\\Desktop\\TFG\\appTFG\\platforms\\android\\app\\src\\main\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "from": {
+                        "startLines": "4,3,2,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "194,116,55,312",
+                        "endColumns": "117,77,60,90",
+                        "endOffsets": "307,189,111,398"
+                    },
+                    "to": {
+                        "startLines": "21,22,23,24",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1999,2117,2195,2256",
+                        "endColumns": "117,77,60,90",
+                        "endOffsets": "2112,2190,2251,2342"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\FRAJE\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\e3f66b7e776e188cc3666826d0d673ab\\res\\values-de\\values-de.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,489,601,687,792,907,984,1060,1142,1253,1356,1455,1566,1668,1775,1897,1999",
+                        "endColumns": "104,107,122,97,111,85,104,114,76,75,81,110,102,98,110,101,106,121,101,100",
+                        "endOffsets": "155,263,386,484,596,682,787,902,979,1055,1137,1248,1351,1450,1561,1663,1770,1892,1994,2095"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,489,601,687,792,907,984,1060,1142,1253,1356,1455,1566,1668,1775,1897,2347",
+                        "endColumns": "104,107,122,97,111,85,104,114,76,75,81,110,102,98,110,101,106,121,101,100",
+                        "endOffsets": "155,263,386,484,596,682,787,902,979,1055,1137,1248,1351,1450,1561,1663,1770,1892,1994,2443"
+                    }
+                }
+            ]
+        }
+    ]
+}

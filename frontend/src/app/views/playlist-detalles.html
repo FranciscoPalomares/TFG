@@ -1,0 +1,95 @@
+
+
+<div id="info-album" class="row" *ngIf="playlist">
+    
+    <div class="col-sm-4">
+        
+        <h2>{{playlist.nombre}}</h2>
+        
+    </div>
+   
+    <div class="col-sm-6" >
+            <h4 style="font-weight: bold;">Autor: &nbsp;{{usuario.nombre}}&nbsp;<a [routerLink]="['/editar-playlist/',playlist.id]" *ngIf="usuario!= null && identidad!=null && usuario.id == identidad.id && playlist!=null" class="btn btn-warning">Editar</a>
+                <a *ngIf="usuario.id == identidad.id" class="btn btn-danger" (click)="eliminarPlaylist()">Borrar</a></h4>
+      
+     <div *ngIf="laSigo!=null">
+        <button class="btn  boton-redondo" (click)="seguirPlaylist()" *ngIf="laSigo==false">Seguir</button>
+        <button class="btn  boton-redondo" (click)="dejarSeguirPlaylist()" *ngIf="laSigo!=false">Dejar de seguir</button>
+     </div>
+    </div>
+    <div class="clearfix"></div>
+    
+</div>
+<hr>
+
+<div class="clearfix"></div>
+
+<h3>Canciones: </h3>
+    <div *ngIf="canciones">
+        <ul id="lista_canciones">
+            <li *ngFor="let cancion of canciones" class="cancion-item">
+                    
+                <div  class="titulo-cancion">
+                        <span class="btn btn-dark fa fa-play" (click)="reproducirCancion(cancion)" aria-hidden="true"></span>
+                    
+                        <span [ngStyle]="{
+                            'color': compararCancion(cancion.id) ? 'green':'black'
+                        }">
+                        
+                        <span class="nombre-cancion">{{cancion.nombre}}  - 
+                            <span><a [routerLink]="['/artista/',cancion.Album.Artistum.id]">{{cancion.Album.Artistum.nombre}}</a></span> - </span>
+                         {{cancion.duracion}}</span>
+                         <span id="opciones">
+                                <div class="dropdown">
+                                        <button class="dropbtn">
+                                                <span class="fas fa-ellipsis-h" aria-hidden="true"></span>
+                                        </button>
+                                        <div class="dropdown-content">
+                                          <a class="btn btn-default" (click)="addCancionCola(cancion)">Añadir a Cola</a>
+                                          <a class="btn btn-info" (click)="playlistsModal(cancion)">Añadir a Playlist</a>
+                                          <div *ngIf="identidad.rol == 'ROLE_ADMIN'">
+                                          <a [routerLink]="['/editar-cancion/',cancion.id]" class="btn btn-warning">Editar</a>
+                                          <a  (click)="eliminarCancion(cancion.id)" class="btn btn-danger">Borrar</a>
+                                        </div>
+                                        </div>
+                                </div>
+                        </span>
+                                     
+                   
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="modal fade" id="modalPlaylists">
+            <div class="modal-dialog">
+              <div class="modal-content">
+          
+               
+                <div class="modal-header">
+                        <h4>Añade canción a Playlist: <a [routerLink]="['/crear-playlist']" class="btn btn-primary btn-lg">Añadir playlist</a></h4>
+                  
+                </div>
+          
+               
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item text-center text-uppercase btn"*ngFor="let playlist of playlists" (click)="addCancionPlaylist(playlist)">
+                            <div >
+                                {{playlist.nombre}}
+                            </div>
+                        </li>
+                      </ul>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+
+
+    

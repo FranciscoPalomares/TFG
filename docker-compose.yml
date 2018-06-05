@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tfg
+      DATABASE_URL: postgres://postgres:password@db:5432/tfg
+    ports:
+       - "5432:5432"
+  
+  web:
+    image: 'angular-iphaco:latest'
+    build: ./frontend
+    ports:
+    - "80:80"
+    links:
+    - node
+    volumes:
+    - "C:/Users/FRAJE/Desktop/TFG/DOCKER/frontend/dist:/usr/share/nginx/html"
+    
+  node:
+    image: 'node-iphaco:latest'
+    build: ./api
+    ports:
+      - "3977:3977"
+     
+    links:
+    - db
+    depends_on:
+    - db
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tfg
+      DATABASE_URL: postgres://postgres:password@db:5432/tfg
+    
+    
+    
+ 

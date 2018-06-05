@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+* {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+.reproductor{
+    font-size:120% !important;
+    border-bottom: 1px solid black; 
+    
+}
+
+.flecha{
+    -webkit-flex: none!important; 
+    flex: none!important; 
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: #dd4b39;
+    
+    
+}
+
+.tab-button:hover{
+    text-decoration: none;
+    }
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-text {
+    color: #dd4b39;
+    
+}
+
+.swiper-pagination-bullet-active {
+    background: #dd4b39;
+
+}
+
+.toolbar-background-md {
+    border-color: rgb(51, 50, 50);
+    background: rgb(51, 50, 50);
+}
+
+
+.toolbar-title-md {
+  
+    color: white;
+}
+
+ion-item.un-item.item.item-block.item-md {
+    background: rgb(51, 50, 50);
+    color: white;
+}
+
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+     border-bottom: 0px solid #dedede; 
+}
+
+

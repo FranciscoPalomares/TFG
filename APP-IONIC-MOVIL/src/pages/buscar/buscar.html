@@ -1,0 +1,85 @@
+
+<ion-header class="bg-style">
+
+    <ion-searchbar placeholder="Busca..." (ionInput)="buscar($event)">
+    
+        
+        
+      </ion-searchbar>
+   
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+
+  <ion-list *ngIf="albumes && albumes.length >0" >
+
+    <h1>Álbumes:</h1>
+    <ion-item class="bg-style" *ngFor="let album of albumes" (click)="irAlbum(album)" detail-push>
+        <ion-avatar item-start>
+            <img class="imagen" src="{{url+'obtener-foto-album/' + album.imagen}}" >
+        </ion-avatar>
+      {{album.titulo}}
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list class="bg-style" *ngIf="canciones && canciones.length >0" >
+
+      <h1>Canciones:</h1>
+      <ion-item  class="bg-style" *ngFor="let cancion of canciones"  [ngStyle]="{
+        'color': compararCancion(cancion.id) ? 'red':'white'
+    }">
+          <ion-icon item-left ion-left name="ios-play" (click)="reproducirCancion(cancion)"></ion-icon>
+          <div text-center><strong>{{primeraMayuscula(cancion.nombre)}}</strong> - &nbsp;{{cancion.duracion}}</div> 
+          <ion-icon item-right ion-right (click)="opciones(cancion)"name="ios-more"></ion-icon>
+  
+        </ion-item>
+  
+  </ion-list>
+
+  <ion-list class="bg-style" *ngIf="artistas && artistas.length >0" >
+
+      <h1>Artistas:</h1>
+      <ion-item class="bg-style" *ngFor="let artista of artistas" (click)="irArtista(artista)" detail-push>
+          <ion-avatar item-start>
+              <img class="imagen" src="{{url+'obtener-foto-artista/' + artista.imagen}}" >
+          </ion-avatar>
+        {{artista.nombre}}
+      </ion-item>
+  
+  </ion-list>
+
+  <ion-list class="bg-style" *ngIf="playlists && playlists.length >0" >
+
+      <h1>Playlists:</h1>
+      <ion-item class="bg-style" *ngFor="let playlist of playlists" (click)="irPlaylist(playlist)" detail-push>
+        {{playlist.nombre}}
+      </ion-item>
+  
+  </ion-list>
+
+  <ion-list class="bg-style" *ngIf="usuarios && usuarios.length >0" >
+
+    <h1>Usuarios:</h1>
+    <ion-item  class="bg-style"*ngFor="let usuario of usuarios" (click)="irUsuario(usuario)" detail-push>
+        <ion-avatar item-start>
+            <img  class="imagen" *ngIf="usuario.imagen"src="{{url+'obtener-foto-perfil/' + usuario.imagen}}" >
+      
+          </ion-avatar>
+
+          <ion-icon  item-start *ngIf="!usuario.imagen" name="ios-contact"></ion-icon>
+      {{usuario.nombre}} {{usuario.apellidos}} 
+    </ion-item>
+
+</ion-list>
+
+<div style="padding-bottom:5.6rem;">
+
+    </div>
+
+
+</ion-content>
+    
+

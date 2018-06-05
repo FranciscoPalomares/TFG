@@ -1,0 +1,120 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Mi cuenta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="fondo">
+
+  <div  *ngIf="usuario" class="fondo">
+  <ion-avatar *ngIf="usuario.imagen">
+    <img  src="{{url + '/obtener-foto-perfil/' + usuario.imagen}}" style="height: 50vh;
+    width: auto;
+    margin: auto;
+    display: block;">
+  </ion-avatar>
+  </div>
+
+  <div *ngIf="usuario" center text-center class="fondo">
+    <ion-avatar *ngIf="!usuario.imagen">
+      <ion-icon style="font-size: 400% !important;" ios="ios-contact" md="md-contact"></ion-icon>
+    </ion-avatar>
+
+    <br>
+    <p *ngIf="!usuario.imagen">No tienes imagen :(</p>
+    </div>
+
+    <div text-center *ngIf="usuario" class="fondo">
+      <h2>
+        {{usuario.nombre}} {{usuario.apellidos}}
+      </h2>
+    </div>
+  
+    <div center text-center class="fondo">
+    <button ion-button round outline color="danger" (click)="cerrarSesion()">Cerrar sesión &nbsp; <ion-icon ios="ios-exit" md="md-exit"></ion-icon></button>
+  </div>
+
+    <ion-list class="fondo">
+
+      <ion-item class="fondo" (click)=" senialarGrupo('datos')">
+
+        <h3>
+          Cambia tus datos      
+
+        </h3>
+
+        <ion-icon  item-right [name]="comprobarGrupo('datos') ? 'ios-arrow-round-down' : 'ios-arrow-round-forward'"></ion-icon>
+
+        
+
+      </ion-item>
+
+      <ion-item class="fondo" (click)=" senialarGrupo('imagen')"> 
+        <h3>
+          Cambia tu imagen
+        
+        </h3>
+
+        <ion-icon  item-right [name]="comprobarGrupo('imagen') ? 'ios-arrow-round-down' : 'ios-arrow-round-forward'"></ion-icon>
+
+        
+      </ion-item>
+
+
+    </ion-list>
+
+
+    <div class="fondo" *ngIf="comprobarGrupo('datos')">
+      <h2>Cambia tus datos:</h2>
+
+      <form (ngSubmit)="actualizarUsuario()">
+          <ion-item class="fondo">
+            <ion-label stacked>Nombre:</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.nombre" name="nombre" required></ion-input>
+          </ion-item>
+          <ion-item class="fondo">
+            <ion-label stacked>Apellidos</ion-label>
+            <ion-input type="text"[(ngModel)]="usuario.apellidos" name="apellidos" required></ion-input>
+          </ion-item>
+          <button ion-button type="submit" [disabled]="usuario.nombre.length==0 && usuario.apellidos.length==0" round block outline>Actualizar usuario</button>
+        </form>
+    </div>
+
+    <div class="fondo" *ngIf="comprobarGrupo('imagen')">
+      <h2>Cambia tu imagen:</h2>
+
+
+      <button ion-button full (click)="obtenerFoto()" >
+        <ion-icon name="camera"></ion-icon>&nbsp;Obtener foto
+        </button>
+
+
+
+      <div *ngIf="uri">
+        <img [src]="uri" style="height: 50vh;
+        width: auto;
+        margin: auto;
+        display: block;" />
+
+        <button ion-button full color="secondary" text-center (click)="subirFoto()"> 
+            <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
+            Subir foto
+          </button> 
+      </div>
+      
+
+    </div>
+    
+  
+    <div style="padding-bottom:5.6rem;">
+
+    </div>
+  
+
+</ion-content>
+
+

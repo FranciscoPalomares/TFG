@@ -1,0 +1,19 @@
+<div *ngIf="_ServicioReproductor.cancion_sonando" class="reproductor"  >
+
+    
+    <div  >
+                <div style="height:1px"class="progress">
+                                <div class="progress-bar" style="background-color:#dd4b39!important"[style.width]="((100*_ServicioReproductor.cancion_sonar.currentTime/_ServicioReproductor.cancion_sonar.duration) | round) + '%'"></div>
+                </div>               
+                
+                
+            <ion-item class="un-item">
+                    <ion-icon item-left ion-left (click)="abrirModal()" name="ios-arrow-dropup-outline"></ion-icon>
+                    <div text-center (click)="abrirModal()">{{_ServicioReproductor.cancion_sonando.nombre}}</div> 
+                    <button ion-button item-right ion-right round outline color="light" (click)="_ServicioReproductor.seguirCancion()" *ngIf="!_ServicioReproductor.sonando"><ion-icon  name="play"></ion-icon></button>
+                    <button ion-button item-right ion-right round outline color="light" (click)="_ServicioReproductor.pausarCancion()" *ngIf="_ServicioReproductor.sonando"><ion-icon  name="pause"></ion-icon></button>
+                   
+            </ion-item>
+            
+    </div>
+</div>

@@ -1,0 +1,23 @@
+
+
+
+<ion-toolbar style="bottom:5.6rem;position:fixed;z-index:10;"  *ngIf="_ServicioReproductor.reproduciendo">
+        <page-reproductor></page-reproductor>
+
+</ion-toolbar>
+
+
+
+<ion-tabs color="gris" class="tabs"  >
+    
+    <ion-tab [root]="tab1Root"   tabTitle="Inicio" tabIcon="home" ></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Artistas" tabIcon="ios-microphone"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Playlists" tabIcon="md-list"></ion-tab>
+    <ion-tab [root]="tab4Root"tabTitle="Buscar" tabIcon="ios-search"></ion-tab>
+    <ion-tab [root]="tab5Root" tabTitle="Mi cuenta" tabIcon="md-person"></ion-tab>
+  
+</ion-tabs>
+
+
+
+

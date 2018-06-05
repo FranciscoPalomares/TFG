@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Inicio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="bg-style">
+
+    <h5 text-center>Últimos álbumes añadidos:</h5>
+
+    <ion-slides class="image-slider" slidesPerView="2" loop="true" >
+            
+        <ion-slide *ngFor="let album of albumes" (click)="irAlbum(album)">
+            <img src="{{url+'obtener-foto-album/' + album.imagen}}" class="thumb-img" >
+            <h4>{{album.titulo}}</h4>
+
+        </ion-slide>
+
+    </ion-slides>
+
+    <h5 text-center>Últimos artistas añadidos:</h5>
+    <ion-slides class="image-slider" loop="true" slidesPerView="2">
+            
+        <ion-slide *ngFor="let artista of artistas" (click)="irArtista(artista)"  >
+            <img src="{{url+'obtener-foto-artista/' + artista.imagen}}" class="thumb-img" >
+            <h4>{{artista.nombre}}</h4>
+           
+        </ion-slide>
+
+    </ion-slides>
+  
+    <div style="padding-bottom:5.6rem;">
+
+    </div>
+</ion-content>

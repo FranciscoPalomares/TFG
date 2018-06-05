@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center >Playlists</ion-title>
+    <ion-buttons end><button (click)="crearPlaylist()" ion-button  color="danger" round outline> <ion-icon name="add"></ion-icon></button></ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+
+  <ion-list class="bg-style" *ngIf="playlists_creadas && playlists_creadas.length >0">
+    <h1 text-center>Playlists creadas:</h1>
+
+    <ion-item class="bg-style"  *ngFor="let playlist of playlists_creadas" (click)="irPlaylist(playlist)" detail-push>
+      {{playlist.nombre}}
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list class="bg-style" *ngIf="playlists_seguidas && playlists_seguidas.length >0">
+    <h1 text-center>Playlists seguidas:</h1>
+
+    <ion-item   class="bg-style" *ngFor="let playlist_seguida of playlists_seguidas" (click)="irPlaylist(playlist_seguida)" detail-push >
+      {{playlist_seguida.nombre}}
+      
+    </ion-item>
+
+  </ion-list>
+
+
+  <div style="padding-bottom:5.6rem;">
+
+    </div>
+</ion-content>
+
+
+

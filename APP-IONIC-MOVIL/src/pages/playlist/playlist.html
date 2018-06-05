@@ -1,0 +1,35 @@
+
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    <ion-title *ngIf="playlist">{{playlist.nombre}}</ion-title>
+    <ion-buttons end  *ngIf="laSigo==null"><button (click)="opcionesPlaylist()" ion-button  >  <ion-icon name="more"></ion-icon></button></ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+  <div center text-center *ngIf="laSigo!=null">
+      <button ion-button round outline color="secondary" *ngIf="laSigo!=false" (click)="dejarSeguirPlaylist()">Dejar de Seguir</button>
+      <button ion-button round outline color="secondary" *ngIf="laSigo==false" (click)="seguirPlaylist()" >Seguir</button>
+  </div>
+
+  <h1>Canciones:</h1>
+  <ion-list class="bg-style">
+    <ion-item class="bg-style" *ngFor="let cancion of canciones"  [ngStyle]="{
+      'color': compararCancion(cancion.id) ? 'red':'white'
+  }">
+        <ion-icon item-left ion-left name="ios-play" (click)="reproducirCancion(cancion)"></ion-icon>
+        <div text-center><strong>{{primeraMayuscula(cancion.nombre)}}</strong> - &nbsp;{{cancion.duracion}}</div> 
+        <ion-icon item-right ion-right (click)="opciones(cancion)"name="ios-more"></ion-icon>
+
+      </ion-item>
+
+  </ion-list>
+
+  <div style="padding-bottom:5.6rem;">
+
+    </div>
+</ion-content>
+

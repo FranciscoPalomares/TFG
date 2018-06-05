@@ -1,0 +1,45 @@
+page-registro {
+    
+        ion-content {
+            background: linear-gradient(to bottom,  #7b4397 0%, #e35d5b 100%);
+          background-size: cover;
+          background-position-x: 50%;
+        }
+        .bar-buttons,
+        .toolbar-title {
+          color: #fff;
+        }
+        .back-button-icon-md {
+            color:white;
+          }
+          .titulo{
+              color:white
+          }
+
+          ion-item {
+            border-radius: 30px !important;
+            border: 1px solid #ffffff;
+            border-bottom: 0px !important;
+            box-shadow: none !important;
+            margin-top:3% !important;
+        }
+    
+        .signup-col {
+          margin: 0px 16px 0px 16px;
+          padding-bottom: 20px;
+        }
+    
+        .item-inner {
+          border-bottom-color: #ffffff !important;
+          box-shadow: none !important;
+        }
+    
+        .submit-btn {
+          background: #51CFB1;
+          border-radius: 30px !important;
+          border: 1px solid #ffffff;
+        }
+    
+        
+
+}

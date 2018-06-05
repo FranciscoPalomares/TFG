@@ -1,0 +1,31 @@
+
+<ion-header>
+
+  <ion-navbar transparent>
+      <ion-buttons left>
+          <button color="light" ion-button icon-only (click)="viewCtrl.dismiss()">
+              <ion-icon name="arrow-back"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding  class="fondo">
+  <h3 class="sonando"*ngIf="_reproductorService.cancion_sonando">Está sonando: {{_reproductorService.cancion_sonando.nombre}}</h3>
+
+  <hr>
+
+  <ion-list *ngIf="_reproductorService.cola" class="transparente">
+      <ion-list-header class="transparente">Siguientes en reproducirse:</ion-list-header>
+      <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
+          <div *ngFor="let cancion of _reproductorService.cola"> 
+                <ion-item class="transparente">{{ cancion.nombre }} <button ion-button  item-end (click)="eliminarCancionCola(cancion.id)" color="light" round outline> <ion-icon name="trash"></ion-icon></button></ion-item>
+                
+          </div>
+        
+      </ion-item-group>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,34 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>Artistas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-style">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+    <ion-list  [virtualScroll]="artistas">
+        <ion-item class="bg-style" *virtualItem="let artista" (click)="irArtista(artista)">       
+            
+               
+                    <ion-avatar item-start>
+                        <img class="imagen"src="{{url+'obtener-foto-artista/' + artista.imagen}}" >
+                    </ion-avatar>
+                    <h2>{{artista.nombre}}</h2>
+                    <p>{{artista.descripcion}}</p>
+                
+        </ion-item>
+      </ion-list>
+
+      <div style="padding-bottom:5.6rem;">
+
+        </div>
+
+</ion-content>

@@ -1,0 +1,43 @@
+
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+
+  <ion-row *ngIf="album">
+
+    <ion-col col-6>
+        <img  class="imagen" src="{{url+'obtener-foto-album/' + album.imagen}}"/>
+    </ion-col>   
+
+    <ion-col class="bg-style" col-6>
+      <h2>{{primeraMayuscula(album.titulo)}}</h2>
+      <h5>{{album.anio}}</h5>
+    </ion-col>
+
+  </ion-row>
+
+
+  <h1>Canciones:</h1>
+  <ion-list class="bg-style">
+    <ion-item  class="bg-style" *ngFor="let cancion of canciones"  [ngStyle]="{
+      'color': compararCancion(cancion.id) ? 'red':'white'
+  }">
+        <ion-icon item-left ion-left name="ios-play" (click)="reproducirCancion(cancion)"></ion-icon>
+        <div text-center><strong>{{primeraMayuscula(cancion.nombre)}}</strong> - &nbsp;{{cancion.duracion}}</div> 
+        <ion-icon item-right ion-right (click)="opciones(cancion)"name="ios-more"></ion-icon>
+
+      </ion-item>
+
+  </ion-list>
+
+  <div class="bg-style" style="padding-bottom:5.6rem;">
+
+    </div>
+</ion-content>

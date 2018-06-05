@@ -1,0 +1,22 @@
+page-home {
+    .bg-style {
+        background: black;
+        color:white;
+    }
+    ion-slide.swiper-slide{
+        left:25%
+    }
+
+    .thumb-img{
+        padding:10px
+    }
+
+    .scroll-content {
+        display: flex;
+        flex-direction: column;
+        
+        ion-slides {
+            display: flex;
+        }
+        }
+}

@@ -1,0 +1,18 @@
+page-datos {
+    .toast-success {
+        > div{
+             background-color:#32db64!important;
+         }
+      }
+
+      .toast-error {
+        > div{
+             background-color:red!important;
+         }
+      }
+
+      .fondo{
+          background-color: black;
+          color: white;
+      }
+}

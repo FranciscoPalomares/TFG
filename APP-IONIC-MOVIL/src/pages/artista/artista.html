@@ -1,0 +1,38 @@
+<ion-header no-border>
+    <ion-navbar transparent >
+      
+      
+     
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding class="card-background-page bg-style">
+
+
+    <ion-card *ngIf="artista">
+        <img  src="{{url+'obtener-foto-artista/' + artista.imagen}}"/>
+        <div class="card-title">{{artista.nombre}}</div>
+      </ion-card>
+      
+      <h2 *ngIf="albumes && albumes.length>0">Álbumes:</h2>
+      <h2 *ngIf="albumes && albumes.length==0">No hay álbumes :(</h2>
+     <ion-grid>
+       <ion-row>
+
+       
+       <ion-col class="bg-style" col-6  *ngFor="let album of albumes" (click)="irAlbum(album)">
+          <img  class="imagen" src="{{url+'obtener-foto-album/' + album.imagen}}"/>
+        <h5 text-center>{{album.titulo}}</h5>
+        <div text-center>{{album.anio}}</div>
+       </ion-col>
+       
+      </ion-row>
+     </ion-grid>
+
+     <div style="padding-bottom:5.6rem;">
+
+      </div>
+</ion-content>
+
+

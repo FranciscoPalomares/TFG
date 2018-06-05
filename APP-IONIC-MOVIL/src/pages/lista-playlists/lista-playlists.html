@@ -1,0 +1,25 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="cancion">Añadir {{cancion.nombre}} a Playlist:</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <ion-list>
+
+    <ion-item *ngFor="let playlist of playlists">
+        <div text-center (click)="addCancionPlaylist(playlist)">{{primeraMayuscula(playlist.nombre)}}</div> 
+        
+    </ion-item>
+
+  </ion-list>
+
+  <div style="padding-bottom:5.6rem;">
+
+    </div>
+</ion-content>

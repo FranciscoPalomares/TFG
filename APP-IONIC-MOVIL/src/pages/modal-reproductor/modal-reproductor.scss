@@ -1,0 +1,46 @@
+
+page-modal-reproductor {
+
+    ion-label{
+        font-family: 'Courier New', 'Courier, monospace';
+    }
+    .avatar {
+        display: block;
+        width: 250px;
+        height: 220px;
+        margin: 0 auto;
+        border: 2px solid #f1f1f1;
+        box-shadow: 0 0 5px #999;
+    }
+
+    .play-pause-btn {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    
+        font-size: 2.0em;
+        color:white;
+    }
+
+    .skip-btn {
+        display: inline-block;
+        width: 50px;
+        height: 80px;
+    
+        font-size: 1.5em;
+        color:white;
+    }
+
+    .artista-nombre{
+        color:grey;
+    }
+
+    #imagen-reproductor{
+        height: 100%;
+    }
+
+    .bg-style {
+        background: linear-gradient(to bottom right, #000000, #434343);
+        color:white;
+    }
+}

@@ -1,0 +1,53 @@
+
+
+<ion-content padding class="bg-style">
+    <ion-icon style="zoom:2.5;"  (click)="cerrarModal()" name="ios-arrow-dropdown-outline"></ion-icon>
+    <ion-icon float-right style="zoom:2.5;"  (click)="abrirModalCola()" name="ios-list-box-outline"></ion-icon>
+
+
+    <div text-center>
+            
+        
+        <div class="avatar">
+          <img id="imagen-reproductor" *ngIf="_ServicioReproductor.album_sonando" src="{{_ServicioReproductor.url+'obtener-foto-album/' + _ServicioReproductor.album_sonando.imagen}}" alt="">
+        </div>
+        <h1 ion-text *ngIf="_ServicioReproductor.cancion_sonando">{{ _ServicioReproductor.cancion_sonando.nombre}}</h1>
+        <h6 ion-text *ngIf="_ServicioReproductor.artista_sonando" class="artista-nombre">{{ _ServicioReproductor.artista_sonando.nombre}}</h6>
+        <div *ngIf="_ServicioReproductor.cancion_sonar">
+            <ion-range  color="danger" min="0" max="{{_ServicioReproductor.cancion_sonar.duration}}" [(ngModel)]="_ServicioReproductor.cancion_sonar.currentTime" debounce="500"  (ionChange)="updateDuracion($event)">
+              <ion-label range-left >{{ _ServicioReproductor.cancion_sonar.currentTime*1000 | date:'mm:ss'}}</ion-label>
+              <ion-label range-right *ngIf="_ServicioReproductor.cancion_sonando.duracion == -1" >--:--</ion-label>
+              <ion-label range-right *ngIf="_ServicioReproductor.cancion_sonando.duracion != -1">{{ _ServicioReproductor.cancion_sonando.duracion }}</ion-label>
+            </ion-range>
+          </div>
+          
+         
+          <ion-grid>
+              <ion-row justify-content-center align-items-center style="height: 100%">
+                <ion-col>
+                  <!-- Backwards -->
+                  <button ion-button class="skip-btn" clear="true" [disabled]="!_ServicioReproductor.reproduciendo" (click)="pasadaCancion()">
+                          &nbsp;&nbsp;<ion-icon name="skip-backward"></ion-icon>&nbsp;&nbsp;
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <!-- Play/Pause -->
+                  <button ion-button round outline center text-center class="play-pause-btn" (click)="_ServicioReproductor.seguirCancion()" color="danger" *ngIf="!_ServicioReproductor.sonando" [disabled]="!_ServicioReproductor.reproduciendo" >
+                    <ion-icon name="play"></ion-icon>
+                  </button>
+        
+                  <button ion-button center round outline text-center class="play-pause-btn" (click)="_ServicioReproductor.pausarCancion()" color="danger" *ngIf="_ServicioReproductor.sonando" [disabled]="!_ServicioReproductor.reproduciendo">
+                    <ion-icon name="pause"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <!-- Forwards -->
+                  <button ion-button class="skip-btn" clear="true" [disabled]="!_ServicioReproductor.reproduciendo && _ServicioReproductor.cola && !_ServicioReproductor.cola.length>0" (click)="siguienteCancion()">
+                          &nbsp;&nbsp;<ion-icon name="skip-forward"></ion-icon>&nbsp;&nbsp;
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+  </div>
+</ion-content>

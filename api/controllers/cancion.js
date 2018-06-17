@@ -205,7 +205,7 @@ function obtenerFichero(req,res){
 			//res.sendFile(path.resolve(ruta_archivo));
 		}
 		else{
-			res.status(200).send({mesage:'No existe la cancion'});
+			res.status(404).send({mesage:'No existe la cancion'});
 		}
 
 	});
